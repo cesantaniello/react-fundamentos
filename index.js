@@ -3,48 +3,30 @@ import { render } from 'react-dom';
 import Hello from './Hello';
 import './style.css';
 
-class Formulario extends Component {
+class Blog extends Component {
   constructor(props){
     super(props);
     this.state = {
-      email: '',
-      password: ''
+      articles: [
+        'Mi primer componente en React',
+        'Introdución a React',
+        'Qué es React'
+      ]
     }
   }
-
-  syncChanges(value, property){
-    let state = {};
-    state[property] = value;
-    this.setState(state);
-  }
-
-  submitForm = () => {
-    consoloe.log(this.state);
-  }
-
-  render() {    
+  render () {
     return (
-      <form>
-        <input
-          onChange={(ev)=>{this.syncChanges(ev.target.value, 'email')}} 
-          type="email"
-          value={this.state.email} 
-          placeholder="Email"/>
-        <input
-          onChange={(ev)=>{this.syncChanges(ev.target.value, 'password')}} 
-          type="password"
-          value={this.state.password} 
-          placeholder="*****"/>
-        <div>
-          <input
-            onClick={this.submitForm}
-            type="submit"
-            value="Iniciar sesión"/>
-        </div>
-      </form>
-      )
-    }
+      <div>
+        {
+          this.state.articles.map((title) => {
+            return <p>{title}</p>
+          })
+        }
+      </div>
+    )
   }
+}
+
 
   class App extends Component {
       constructor() {
@@ -58,7 +40,7 @@ class Formulario extends Component {
       let nombre = "Carlos";
       return (
         <div>
-          <Formulario />
+          <Blog />
         </div>
       );
     }
